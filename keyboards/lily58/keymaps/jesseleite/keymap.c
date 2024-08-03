@@ -21,11 +21,6 @@ enum layer_number {
 #define KC_xx   KC_NO                // Completely disable key with `xx`
 #define KC_DFLT DF(_DEFAULT)         // Switch to default layer
 #define KC_WIN  DF(_WINDOWS)         // Switch to game layer
-// #define KC_OAPP KC_F13              // App launcher modal
-// #define KC_MACR KC_F14              // Misc macros modal
-// #define KC_TERM LCMD(KC_ESC)        // Summon terminal from anywhere
-// #define KC_LOWR MO(_LOWER)          // Lower layer
-// #define KC_LWRT TD(LWRT)            // Lower layer tap dance
 #define KC_LWRT LT(_LOWER, KC_F13)   // Hold for lower layer, tap for app launcher modal
 #define KC_CMDO MT(MOD_LGUI, KC_F14) // Hold for cmd, tap for macros modal
 #define KC_RAIS MO(_RAISE)           // Raise layer
@@ -42,38 +37,6 @@ enum layer_number {
 #define KC_ZMIN LCMD(KC_EQL)         // Zoom in
 #define KC_ZMOT LCMD(KC_MINS)        // Zoom out
 #define KC_ZMRS LCMD(KC_0)           // Zoom reset
-
-
-// // -----------------------------------------------------------------------------
-// // Setup tap dance
-// // ------------------------------------------------------------------------------
-
-// typedef enum {
-//     TD_NONE,
-//     TD_UNKNOWN,
-//     TD_SINGLE_TAP,
-//     TD_SINGLE_HOLD,
-//     TD_DOUBLE_TAP
-// } td_state_t;
-
-// typedef struct {
-//     bool is_press_action;
-//     td_state_t state;
-// } td_tap_t;
-
-// // Define tap dance keycodes
-// enum {
-//     LWRT,
-// };
-
-// // Declare the functions to be used with your tap dance key(s)
-
-// // Function associated with all tap dances
-// td_state_t cur_dance(tap_dance_state_t *state);
-
-// // Functions associated with individual tap dances
-// void lower_finished(tap_dance_state_t *state, void *user_data);
-// void lower_reset(tap_dance_state_t *state, void *user_data);
 
 
 // -----------------------------------------------------------------------------
@@ -213,63 +176,3 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   return true;
 }
-
-
-// // -----------------------------------------------------------------------------
-// // Handle tap dance
-// // ------------------------------------------------------------------------------
-
-// // Determine the current tap dance state
-// td_state_t cur_dance(tap_dance_state_t *state) {
-//     if (state->count == 1 && !state->pressed) return TD_SINGLE_TAP;
-//     else if (state->count == 1) return TD_SINGLE_HOLD;
-//     else if (state->count == 2) return TD_DOUBLE_TAP;
-//     else return TD_UNKNOWN;
-// }
-
-// // Initialize tap structure associated with example tap dance key
-// static td_tap_t lower_tap_state = {
-//     .is_press_action = true,
-//     .state = TD_NONE
-// };
-
-// // Functions that control what our tap dance key does
-// void lower_finished(tap_dance_state_t *state, void *user_data) {
-//     lower_tap_state.state = cur_dance(state);
-//     switch (lower_tap_state.state) {
-//         case TD_SINGLE_TAP:
-//             tap_code(KC_OAPP);
-//             break;
-//         case TD_SINGLE_HOLD:
-//             layer_on(_LOWER);
-//             break;
-//         case TD_DOUBLE_TAP:
-//             tap_code(KC_MACR);
-//             break;
-//         default:
-//             break;
-//     }
-// }
-
-// void lower_reset(tap_dance_state_t *state, void *user_data) {
-//     // If the key was held down and now is released then switch off the layer
-//     if (lower_tap_state.state == TD_SINGLE_HOLD) {
-//         layer_off(_LOWER);
-//     }
-//     lower_tap_state.state = TD_NONE;
-// }
-
-// // Associate our tap dance key with its functionality
-// tap_dance_action_t tap_dance_actions[] = {
-//     [LWRT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, lower_finished, lower_reset)
-// };
-
-// // Set a long-ish tapping term for tap-dance keys
-// uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-//     switch (keycode) {
-//         case QK_TAP_DANCE ... QK_TAP_DANCE_MAX:
-//             return 275;
-//         default:
-//             return TAPPING_TERM;
-//     }
-// }
