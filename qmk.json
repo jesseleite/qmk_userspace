@@ -3,23 +3,27 @@
     "build_targets": [
         [
             "lily58/rev1",
+            "jesseleite"
+        ],
+        [
+            "lily58/rev1",
             "jesseleite",
             {
-                "CONVERT_TO": "promicro_rp2040"
+                "CONVERT_TO": "rp2040_ce"
             }
         ],
         [
             "lily58/rev1",
             "tester",
             {
-                "CONVERT_TO": "promicro_rp2040"
+                "CONVERT_TO": "rp2040_ce"
             }
         ],
         [
             "crkbd/rev1",
             "jesseleite",
             {
-                "CONVERT_TO": "promicro_rp2040"
+                "CONVERT_TO": "rp2040_ce"
             }
         ]
     ]
