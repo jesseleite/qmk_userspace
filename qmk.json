@@ -32,6 +32,13 @@
             {
                 "CONVERT_TO": "rp2040_ce"
             }
+        ],
+        [
+            "crkbd/rev1",
+            "via",
+            {
+                "CONVERT_TO": "rp2040_ce"
+            }
         ]
     ]
 }
